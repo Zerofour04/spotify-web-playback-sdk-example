@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import WebPlayback from './WebPlayback'
-import Login from './Login'
+import React from "react";
 import './App.css';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+import Header from "./Header";
+import Player from "./Player";
+import MainSide from "./components/SpotifySite";
 
 function App() {
 
-  const [token, setToken] = useState('');
 
-  useEffect(() => {
-
-    async function getToken() {
-      const response = await fetch('/auth/token');
-      const json = await response.json();
-      setToken(json.access_token);
-    }
-
-    getToken();
-
-  }, []);
-
-  return (
-    <>
-        { (token === '') ? <Login/> : <WebPlayback token={token} /> }
-    </>
+    return (
+        <div className="App">
+            <Router>
+                <Link to="/mainside" className="top-button"role="button">Mainside</Link>
+                <Link to="/player" className="top-button"role="button">Spotify player</Link>
+                <Route path="/" exact>
+                    <Header/>
+                </Route>
+                <Route path="/player">
+                    <Player/>
+                </Route>
+                <Route path="/mainside">
+                    <MainSide/>
+                </Route>
+            </Router>
+        </div>
   );
 }
-
 
 export default App;
