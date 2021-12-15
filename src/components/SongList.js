@@ -1,23 +1,38 @@
 import React from "react";
+import Table from "react-bootstrap/Table";
 
-function SongList(props){
+function SongList(props) {
 
     const Song1 = {
-        songName: 'Hello1',
+        id: 1,
         artist: 'David1',
-        id: 1
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'Hello1'
     }
 
     const Song2 = {
-        songName: 'Hallo1',
+        id: 2,
         artist: 'Dinko1',
-        id: 2
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'Hallo1'
     }
 
     const Song3 = {
-        songName: 'Sven1',
+        id: 3,
         artist: 'Sven1',
-        id: 3
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'Sven1',
+
+
     }
 
     let songList1 = {
@@ -25,22 +40,35 @@ function SongList(props){
         songs: [Song1, Song2, Song3],
     }
 
+
     const Song4 = {
-        songName: 'Hello2',
+        id: 1,
         artist: 'David2',
-        id: 1
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'Hello2'
     }
 
     const Song5 = {
-        songName: 'Hallo2',
+        id: 2,
         artist: 'Dinko2',
-        id: 2
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'Hallo2'
     }
 
     const Song6 = {
-        songName: 'Sven2',
+        id: 3,
         artist: 'Sven2',
-        id: 3
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'Sven2'
     }
 
     let songList2 = {
@@ -48,22 +76,35 @@ function SongList(props){
         songs: [Song4, Song5, Song6]
     }
 
+
     const Song7 = {
-        songName: 'Hello3',
+        id: 1,
         artist: 'David3',
-        id: 1
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'David3'
     }
 
     const Song8 = {
-        songName: 'Hallo3',
+        id: 2,
         artist: 'Dinko3',
-        id: 2
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
+        name: 'Dinko3'
     }
 
     const Song9 = {
-        songName: 'Sven3',
+        id: 3,
+        genre: 'pop',
+        images: {},
+        duration_ms: 3000,
+        explicit: false,
         artist: 'Sven3',
-        id: 3
+        name: 'Sven3'
     }
 
     let songList3 = {
@@ -71,9 +112,9 @@ function SongList(props){
         songs: [Song7, Song8, Song9]
     }
 
-    function getSongList(){
+    function getSongList() {
         const albumID = Number(props.match.params.id);
-        console.log(albumID);
+        console.log('AlbumID:', albumID);
         console.log(songList1.albumId);
         if (albumID === songList1.albumId) {
             return songList1;
@@ -84,21 +125,34 @@ function SongList(props){
         }
     }
 
-    return(
-        <div>
-        <p>{props.match.params.id}</p>
-        <ul>
-            {getSongList().songs?.map((songObject, index) => {
-                return (
-                    <li key={index}>
-                        {songObject.songName}
-                    </li>
-                )})
-            }
 
+    return (
+        <div>        
+        <Table striped bordered hover variant="dark">
+            <thead>
+                <tr>
 
-        </ul>
+                    <th>MusicID:</th>
+                    <th>Musicname:</th>
+                    <th>Artist:</th>
+                    <th>Duration:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {getSongList().songs?.map((songObject, index) => {
+                        return (
+                            <tr>
+                                <td key={index}>{songObject.id}</td>
+                                <td key={index}>{songObject.name}</td>
+                                <td key={index}>{songObject.artist}</td>
+                                <td key={index}>{songObject.duration_ms}</td>
+                            </tr>
+                        )
+                    })}
+            </tbody>
+        </Table>
         </div>
+
 
     )
 

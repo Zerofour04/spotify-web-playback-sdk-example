@@ -1,48 +1,104 @@
 import React from "react";
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { Col } from "react-bootstrap";
 
 function AlbumList() {
 
     const Album1 = {
-        text: 'Album1',
-        id: 1,
+        album_type: 'album',
+        total_tracks: 3,
+        images: {},
+        name: 'Album1',
+        release_date: Date(),
+        artist: 'David',
+        followers: 0,
+        id: 1
     }
 
     const Album2 = {
-        text: 'Album2',
-        id: 2,
+        album_type: 'album',
+        total_tracks: 3,
+        images: {},
+        name: 'Album2',
+        release_date: Date(),
+        artist: 'Dinko',
+        followers: 0,
+        id: 2
     }
 
     const Album3 = {
-        text: 'Album3',
-        id: 3,
+        album_type: 'album',
+        total_tracks: 3,
+        images: {},
+        name: 'Album3',
+        release_date: Date(),
+        artist: 'Sven',
+        followers: 0,
+        id: 3
     }
 
-    const [album] = useState([Album1, Album2, Album3])
-
-    function randomNumGenerator(){
-        const randomNum = Math.random() * 100000;
-        const newNumber = Math.floor(randomNum);
-        console.log('ID', randomNum);
-        console.log('floored', newNumber);
-        return newNumber;
-    }
-
+    const [album] = useState([Album1, Album2, Album3]) 
 
     return (
-        <ul>
+        
+
+        
+
+        <div>
+            <Container>
+
+            <Row>
+
+
+
+
             {album.map((albumObject, index) => {
                 return (
+                            <Col className="col" >
+                                <Card>
 
-                    <li key={index}>
-                    <Link to={`/album/${albumObject.id}`}>{ albumObject.text}</Link>
+                                    <Card.Body>
+                                        
 
-                    </li>
-                );
+                                        <Card.Title>
+                                            <Link to={`/album/${albumObject.id}`}>
+                                                {albumObject.name}
+                                            </Link>
+                                        </Card.Title>
+
+                                        <Card.Text>
+                                            {albumObject.artist}
+                                        </Card.Text>
+
+                                    </Card.Body>
+
+                                </Card>
+                            </Col>
+
+                )
             })}
-        </ul>
-    )
-}
 
+            </Row>
+
+            <Container>
+                <Row md={3}>
+                    <Col>1 of 3</Col>
+                    <Col>2 of 3</Col>
+                    <Col>3 of 3</Col>
+                </Row>
+            </Container>
+
+
+            </Container>
+
+
+        </div>
+    )
+
+}
 export default AlbumList;
